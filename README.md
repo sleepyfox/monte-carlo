@@ -1,4 +1,4 @@
-# Anagram Kata
+# Monte-Carlo Kata
 This is a worked example in Python based upon the Monte-Carlo kata.
 
 Run the tests with:
