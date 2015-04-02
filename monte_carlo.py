@@ -8,7 +8,10 @@ def analyse(project_stats):
 	"""Takes a list of pairs of (Story points, time in minutes)
 	   Returns a map of lists of time in minutes grouped by
 	   (small|medium|large)"""
-	return { 'small': [], 'medium': [], 'large': []}
+	analysis_map = { 'small': [], 'medium': [], 'large': [] }
+	for story_points, time in project_stats:
+		analysis_map['small'].append(time)
+	return analysis_map
 
 class WorkItemList():
 	def __init__(self, xs):

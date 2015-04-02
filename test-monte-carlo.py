@@ -51,7 +51,7 @@ class FileReaderSuite(unittest.TestCase):
 class ProjectAnalyserSuite(unittest.TestCase):
 	def test_empty_work_list_analysis_has_correct_categories(self):
 		'An analysis of project data should have all three categories'
-		myProjectData = ['25,376200']
+		myProjectData = [[25,376200]]
 		myProjectAnalysis = analyse(myProjectData)
 		self.assertIn('small', myProjectAnalysis)
 		self.assertIn('medium', myProjectAnalysis)
@@ -59,12 +59,20 @@ class ProjectAnalyserSuite(unittest.TestCase):
 
 	def test_analyser_categories_have_empty_lists(self):
 		'An analysis of project data should retuen empty lists for all three categories'
-		myProjectData = ['25,376200']
+		myProjectData = [[25,376200]]
 		myProjectAnalysis = analyse(myProjectData)
 		self.assertIsInstance(myProjectAnalysis['small'], list)
 		self.assertIsInstance(myProjectAnalysis['small'], list)
 		self.assertIsInstance(myProjectAnalysis['small'], list)
 
-	# def test_analyser
+	def test_analyser_adds_item_to_map(self):
+		'An analysis of [1,1] returns {small: [1]}'
+		myProjectData = [[25,376200]]
+		myProjectAnalysis = analyse(myProjectData)
+		self.assertIsInstance(myProjectAnalysis['small'], list)
+		self.assertEqual(len(myProjectAnalysis['small']), 1)
+		self.assertIn(376200, myProjectAnalysis['small'])
+
+
 if __name__ == "__main__":
 	unittest.main()
