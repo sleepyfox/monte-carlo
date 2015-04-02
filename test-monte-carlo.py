@@ -3,6 +3,8 @@
 import unittest
 import random
 
+ALL_BUT_LAST = -1
+
 class WorkItemList():
 	def __init__(self, xs):
 		self.list = xs
@@ -15,15 +17,16 @@ class WorkItemList():
 		"returns a series of random samples from a list"
 		return [self.pickItemFromList() for i in range(times)]
 
+
 class ProjectFileReader():
 	def __init__(self, filename):
-		self.lines = open(filename).read().split('\n')
-		self.lines = self.lines[:-1]
+		def parseWorkItem(line_of_text):
+			return list(map(int, line_of_text.split(',')))
 
-		self.temp_lines = []
-		for line in self.lines:
-			self.temp_lines.append(list(map(int, line.split(','))))
-		self.lines = self.temp_lines
+		with open(filename) as f:
+			lines = f.read().split('\n')[:ALL_BUT_LAST]
+			self.lines = [parseWorkItem(line) for line in lines]
+
 
 class ListSampler(unittest.TestCase):
 	def test_pick_from_list_of_one_item(self):
@@ -41,6 +44,7 @@ class ListSampler(unittest.TestCase):
 		myList = WorkItemList([3])
 		self.assertEqual(myList.sample(10).count(3), 10)
 
+
 class ProjectDataReader(unittest.TestCase):
 	def test_that_test_file_should_have_one_line(self):
 		"When we try and read a small test file we get one row"
@@ -51,6 +55,7 @@ class ProjectDataReader(unittest.TestCase):
 		"From a single row test data file, we have a numerical Story Point"
 		myProjectData = ProjectFileReader("small-test-file.csv")
 		self.assertEqual(myProjectData.lines[0][0], 25)
+
 
 if __name__ == "__main__":
 	unittest.main()
