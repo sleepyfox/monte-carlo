@@ -52,7 +52,8 @@ class FileReaderSuite(unittest.TestCase):
 class ProjectAnalyserSuite(unittest.TestCase):
 	def test_empty_work_list_has_correct_categories(self):
 		"Given an empty list of project data, work distribution has all three categories"
-		myProjectAnalysis = { 'small': [], 'medium': [], 'large': [] }
+		myProjectData = ProjectFileReader("project-stats.csv")
+		myProjectAnalysis = analyse(myProjectData)
 		self.assertIn('small', myProjectAnalysis)
 		self.assertIn('medium', myProjectAnalysis)
 		self.assertIn('large', myProjectAnalysis)

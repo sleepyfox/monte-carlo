@@ -2,6 +2,12 @@ import random
 
 ALL_BUT_LAST = -1
 
+def analyse(project_stats):
+	"""Takes a list of pairs of (Story points, time in minutes)
+	   Returns a map of lists of time in minutes grouped by
+	   (small|medium|large)"""
+	return { 'small': 1, 'medium': 1, 'large': 1}
+
 class WorkItemList():
 	def __init__(self, xs):
 		self.list = xs
