@@ -36,10 +36,12 @@ class ListSampler(unittest.TestCase):
 		self.assertEqual(myList.sample(10).count(3), 10)
 
 class ProjectDataReader(unittest.TestCase):
-	def test_can_read_test_file(self):
-		"When we try and read a test file we get one row"
+	def test_that_test_file_should_have_one_line(self):
+		"When we try and read a small test file we get one row"
 		myProjectData = ProjectFileReader("small-test-file.csv")
 		self.assertEqual(len(myProjectData.lines), 1)
+
+	# def test_project_data_has_story_point_size
 
 if __name__ == "__main__":
 	unittest.main()
