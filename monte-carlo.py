@@ -1,8 +1,3 @@
-"A test suite for a Monte-Carlo simulator"
-
-import unittest
-import random
-
 ALL_BUT_LAST = -1
 
 class WorkItemList():
@@ -43,28 +38,3 @@ class ListSampler(unittest.TestCase):
 		"When we ask for 10 samples from a list of one then we get 10 items all the same"
 		myList = WorkItemList([3])
 		self.assertEqual(myList.sample(10).count(3), 10)
-
-
-class ProjectDataReader(unittest.TestCase):
-	def test_that_test_file_should_have_one_line(self):
-		"When we try and read a small test file we get one row"
-		myProjectData = ProjectFileReader("small-test-file.csv")
-		self.assertEqual(len(myProjectData.lines), 1)
-
-	def test_project_data_has_story_point_size(self):
-		"From a single row test data file, we have a numerical Story Point"
-		myProjectData = ProjectFileReader("small-test-file.csv")
-		self.assertEqual(myProjectData.lines[0][0], 25)
-
-	def test_project_data_has_story_time_value(self):
-		"From a single row test data file, we have a time value associated with a Story Point"
-		myProjectData = ProjectFileReader("small-test-file.csv")
-		self.assertEqual(myProjectData.lines[0][1], 376200)
-
-	def test_that_real_file_should_have_259_lines(self):
-		"When we try and read a small test file we get one row"
-		myProjectData = ProjectFileReader("project-stats.csv")
-		self.assertEqual(len(myProjectData.lines), 259)
-
-if __name__ == "__main__":
-	unittest.main()
