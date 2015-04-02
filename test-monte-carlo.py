@@ -17,7 +17,13 @@ class WorkItemList():
 
 class ProjectFileReader():
 	def __init__(self, filename):
-		self.lines = [line.strip() for line in open(filename)]
+		self.lines = open(filename).read().split('\n')
+		self.lines = self.lines[:-1]
+
+		self.temp_lines = []
+		for line in self.lines:
+			self.temp_lines.append(list(map(int, line.split(','))))
+		self.lines = self.temp_lines
 
 class ListSampler(unittest.TestCase):
 	def test_pick_from_list_of_one_item(self):
@@ -41,7 +47,10 @@ class ProjectDataReader(unittest.TestCase):
 		myProjectData = ProjectFileReader("small-test-file.csv")
 		self.assertEqual(len(myProjectData.lines), 1)
 
-	# def test_project_data_has_story_point_size
+	def test_project_data_has_story_point_size(self):
+		"From a single row test data file, we have a numerical Story Point"
+		myProjectData = ProjectFileReader("small-test-file.csv")
+		self.assertEqual(myProjectData.lines[0][0], 25)
 
 if __name__ == "__main__":
 	unittest.main()
