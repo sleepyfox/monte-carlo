@@ -109,9 +109,23 @@ class ProjectAnalyserSuite(unittest.TestCase):
 class EffortSuite(unittest.TestCase):
 	def test_an_estimate_of_one_item_has_given_effort(self):
 		'When given a work item list with one effort of 5 and an estimates list of one small item, returns 5'
-		myProjectAnalysis = { 'small': WorkItemList([5]) }
-		myEstimates = { 'small': 1 }
+		myProjectAnalysis = {
+			'small': WorkItemList([5]),
+			'medium': WorkItemList([]),
+			'large': WorkItemList([])
+		}
+		myEstimates = { 'small': 1, 'medium': 0, 'large': 0 }
 		self.assertEqual(total_effort(myProjectAnalysis, myEstimates), 5)
+
+	def test_an_estimate_of_three_items_from_identical_lists(self):
+		'When given a work item list with one of each type and estimates with identical efforts gives the correct effort'
+		p = {
+			'small': WorkItemList([1,1,1]),
+			'medium': WorkItemList([2,2,2]),
+			'large': WorkItemList([3,3,3])
+		}
+		e = { 'small': 1, 'medium': 1, 'large': 1 }
+		self.assertEqual(total_effort(p, e), 6)
 
 # class SimulatorSuite(unittest.TestCase):
 # 	def test_a_run_of_one_produces_a_single_result(self):

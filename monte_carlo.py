@@ -36,6 +36,12 @@ def total_effort(project_analysis, estimates):
 	smalls = project_analysis['small']
 	num_smalls = estimates['small']
 	total_effort += sum(smalls.sample(num_smalls))
+	mediums = project_analysis['medium']
+	num_mediums = estimates['medium']
+	total_effort += sum(mediums.sample(num_mediums))
+	larges = project_analysis['large']
+	num_larges = estimates['large']
+	total_effort += sum(larges.sample(num_larges))
 	return total_effort
 
 
