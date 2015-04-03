@@ -5,18 +5,29 @@ COMMA = ','
 NEWLINE = '\n'
 
 def analyse(project_stats):
-	"""Takes a list of pairs of (Story points, time in minutes)
-	   Returns a map of lists of time in minutes grouped by
-	   (small|medium|large)"""
-	analysis_map = { 'small': [], 'medium': [], 'large': [] }
-	for story_points, time in project_stats:
+	'''Takes a list of pairs of (Story points, time in minutes)
+	   Returns a map of categories (small|medium|large) to WorkItemLists'''
+	analysis_map = {
+		'small':   WorkItemList([]),
+		'medium':  WorkItemList([]),
+		'large':   WorkItemList([])
+	}
+	for story_points, effort in project_stats:
 		if story_points <= 8:
-			analysis_map['small'].append(time)
+			analysis_map['small'].append(effort)
 		elif story_points <= 20:
-			analysis_map['medium'].append(time)
+			analysis_map['medium'].append(effort)
 		else:
-			analysis_map['large'].append(time)
+			analysis_map['large'].append(effort)
 	return analysis_map
+
+def simulate(project_analysis, estimates, runs):
+	''' Takes a project analysis that is a map of WorkItemLists
+		and a map of estimate categories and number of items
+		and a number of runs of the simulator
+		Returns a list of effort durations'''
+	# smalls =
+
 
 class WorkItemList():
 	def __init__(self, xs):
@@ -29,6 +40,11 @@ class WorkItemList():
 	def sample(self, times):
 		'returns a series of random samples from a list'
 		return [self.pickItemFromList() for i in range(times)]
+
+	def append(self, item):
+		'adds an item to the end of the list'
+		self.list.append(item)
+		return len(self.list)
 
 
 class ProjectFileReader():
