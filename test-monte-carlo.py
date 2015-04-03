@@ -9,6 +9,18 @@ ESTIMATES = {
   'large': 4
 }
 
+VARIED_STATS = [ # 4 small, 3 medium, 2 large
+	[25,318600],
+	[13,48600],
+	[25,392400],
+	[8,43200],
+	[1,4500],
+	[0,900],
+	[5,36000],
+	[13,133200],
+	[20,72000]
+]
+
 class ListSamplerSuite(unittest.TestCase):
 	def test_pick_from_list_of_one_item(self):
 		'When we pick an item from a list of one, we always get the same item'
@@ -66,13 +78,20 @@ class ProjectAnalyserSuite(unittest.TestCase):
 		self.assertIsInstance(myProjectAnalysis['small'], list)
 
 	def test_analyser_adds_item_to_map(self):
-		'An analysis of [1,1] returns {small: [1]}'
-		myProjectData = [[25,376200]]
+		'An analysis of [[1,200]] returns {small: [200]}'
+		myProjectData = [[1,200]]
 		myProjectAnalysis = analyse(myProjectData)
 		self.assertIsInstance(myProjectAnalysis['small'], list)
 		self.assertEqual(len(myProjectAnalysis['small']), 1)
-		self.assertIn(376200, myProjectAnalysis['small'])
+		self.assertIn(200, myProjectAnalysis['small'])
 
+	def test_analyser_works_with_larger_data_set(self):
+		'When given varied data correctly groups stories of eight points or less into the small category'
+		myProjectData = VARIED_STATS
+		myProjectAnalysis = analyse(myProjectData)
+		self.assertEqual(len(myProjectAnalysis['small']), 4)
+		self.assertEqual(len(myProjectAnalysis['medium']), 3)
+		self.assertEqual(len(myProjectAnalysis['large']), 2)
 
 if __name__ == "__main__":
 	unittest.main()

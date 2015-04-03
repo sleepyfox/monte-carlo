@@ -10,7 +10,12 @@ def analyse(project_stats):
 	   (small|medium|large)"""
 	analysis_map = { 'small': [], 'medium': [], 'large': [] }
 	for story_points, time in project_stats:
-		analysis_map['small'].append(time)
+		if story_points <= 8:
+			analysis_map['small'].append(time)
+		elif story_points <= 20:
+			analysis_map['medium'].append(time)
+		else:
+			analysis_map['large'].append(time)
 	return analysis_map
 
 class WorkItemList():
