@@ -129,9 +129,13 @@ class EffortSuite(unittest.TestCase):
 
 # class SimulatorSuite(unittest.TestCase):
 # 	def test_a_run_of_one_produces_a_single_result(self):
-# 		myProjectAnalysis = { "small": [1] }
-# 		myEstimates = { "small": 1 }
-# 		self.assertEqual(len(simulate(myProjectAnalysis, 1)), 1)
+# 		p = {
+# 			'small': WorkItemList([1,1,1]),
+# 			'medium': WorkItemList([2,2,2]),
+# 			'large': WorkItemList([3,3,3])
+# 		}
+# 		e = { 'small': 1, 'medium': 1, 'large': 1 }
+# 		self.assertEqual(len(simulate(p, e, 1)), 1)
 
 
 if __name__ == "__main__":

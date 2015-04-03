@@ -28,18 +28,21 @@ def simulate(project_analysis, estimates, runs):
 		Returns a list of effort durations'''
 	# smalls =
 
+def flatten(list_of_lists):
+	return sum(list_of_lists, [])
+
 def total_effort(project_analysis, estimates):
 	''' Takes a project analysis that is a map of WorkItemLists
 		and a map of estimate categories and number of items
 		Returns an effort based upon a random sampling of the analysis times the estimated number of work items'''
-	total_effort = 0
 
-	for size in estimates.keys():
+	def get_samples(size):
 		n = estimates[size]
-		work_items = project_analysis[size]
-		total_effort += sum(work_items.sample(n))
+		return project_analysis[size].sample(n)
 
-	return total_effort
+	efforts = [get_samples(size) for size in estimates.keys()]
+
+	return sum(flatten(efforts))
 
 
 class WorkItemList():
