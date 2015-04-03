@@ -33,15 +33,12 @@ def total_effort(project_analysis, estimates):
 		and a map of estimate categories and number of items
 		Returns an effort based upon a random sampling of the analysis times the estimated number of work items'''
 	total_effort = 0
-	smalls = project_analysis['small']
-	num_smalls = estimates['small']
-	total_effort += sum(smalls.sample(num_smalls))
-	mediums = project_analysis['medium']
-	num_mediums = estimates['medium']
-	total_effort += sum(mediums.sample(num_mediums))
-	larges = project_analysis['large']
-	num_larges = estimates['large']
-	total_effort += sum(larges.sample(num_larges))
+
+	for size in estimates.keys():
+		n = estimates[size]
+		work_items = project_analysis[size]
+		total_effort += sum(work_items.sample(n))
+
 	return total_effort
 
 
