@@ -46,6 +46,7 @@ def total_effort(project_analysis, estimates):
 
 
 class WorkItemList():
+	'''A class to help with working with lists of work item durations'''
 	def __init__(self, xs):
 		self.list = xs
 
@@ -64,10 +65,9 @@ class WorkItemList():
 
 
 class ProjectFileReader():
+	'''Takes a CSV file name, reads it in and
+	Returns a list of pairs of numbers'''
 	def __init__(self, filename):
-		'''Takes a CSV file name, reads it in and
-		   Returns a list of pairs of numbers'''
-
 		def parseWorkItem(line_of_text):
 			return list(map(int, line_of_text.split(COMMA)))
 
