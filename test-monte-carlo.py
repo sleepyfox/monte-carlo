@@ -127,15 +127,19 @@ class EffortSuite(unittest.TestCase):
 		e = { 'small': 1, 'medium': 1, 'large': 1 }
 		self.assertEqual(total_effort(p, e), 6)
 
-# class SimulatorSuite(unittest.TestCase):
-# 	def test_a_run_of_one_produces_a_single_result(self):
-# 		p = {
-# 			'small': WorkItemList([1,1,1]),
-# 			'medium': WorkItemList([2,2,2]),
-# 			'large': WorkItemList([3,3,3])
-# 		}
-# 		e = { 'small': 1, 'medium': 1, 'large': 1 }
-# 		self.assertEqual(len(simulate(p, e, 1)), 1)
+class SimulatorSuite(unittest.TestCase):
+	def test_a_run_with_zero_runs_returns_an_empty_list(self):
+		'Zero runs always returns an empty list'
+		self.assertEqual(len(simulate({}, {}, 0)), 0)
+
+	# def test_a_run_of_one_produces_a_single_result(self):
+	# 	p = {
+	# 		'small': WorkItemList([1,1,1]),
+	# 		'medium': WorkItemList([2,2,2]),
+	# 		'large': WorkItemList([3,3,3])
+	# 	}
+	# 	e = { 'small': 1, 'medium': 1, 'large': 1 }
+	# 	self.assertEqual(len(simulate(p, e, 1)), 1)
 
 
 if __name__ == "__main__":
