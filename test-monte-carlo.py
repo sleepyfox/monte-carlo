@@ -106,12 +106,12 @@ class ProjectAnalyserSuite(unittest.TestCase):
 		self.assertEqual(len(myProjectAnalysis['large'].list), 2)
 
 
-class estimateSuite(unittest.TestCase):
+class EffortSuite(unittest.TestCase):
 	def test_an_estimate_of_one_item_has_given_effort(self):
 		'When given a work item list with one effort of 5 and an estimates list of one small item, returns 5'
 		myProjectAnalysis = { 'small': WorkItemList([5]) }
 		myEstimates = { 'small': 1 }
-		self.assertEqual(estimate(myProjectAnalysis, myEstimates), 5)
+		self.assertEqual(total_effort(myProjectAnalysis, myEstimates), 5)
 
 # class SimulatorSuite(unittest.TestCase):
 # 	def test_a_run_of_one_produces_a_single_result(self):

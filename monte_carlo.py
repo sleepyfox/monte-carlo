@@ -28,7 +28,7 @@ def simulate(project_analysis, estimates, runs):
 		Returns a list of effort durations'''
 	# smalls =
 
-def estimate(project_analysis, estimates):
+def total_effort(project_analysis, estimates):
 	''' Takes a project analysis that is a map of WorkItemLists
 		and a map of estimate categories and number of items
 		Returns an effort based upon a random sampling of the analysis times the estimated number of work items'''
