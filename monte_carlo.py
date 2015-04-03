@@ -26,7 +26,7 @@ def simulate(project_analysis, estimates, runs):
 		and a map of estimate categories and number of items
 		and a number of runs of the simulator
 		Returns a list of effort durations'''
-	return []
+	return [total_effort(project_analysis, estimates) for i in range(runs)]
 
 def flatten(list_of_lists):
 	return sum(list_of_lists, [])

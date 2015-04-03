@@ -132,14 +132,15 @@ class SimulatorSuite(unittest.TestCase):
 		'Zero runs always returns an empty list'
 		self.assertEqual(len(simulate({}, {}, 0)), 0)
 
-	# def test_a_run_of_one_produces_a_single_result(self):
-	# 	p = {
-	# 		'small': WorkItemList([1,1,1]),
-	# 		'medium': WorkItemList([2,2,2]),
-	# 		'large': WorkItemList([3,3,3])
-	# 	}
-	# 	e = { 'small': 1, 'medium': 1, 'large': 1 }
-	# 	self.assertEqual(len(simulate(p, e, 1)), 1)
+	def test_a_run_of_one_produces_a_single_result(self):
+		p = {
+			'small': WorkItemList([1,1,1]),
+			'medium': WorkItemList([2,2,2]),
+			'large': WorkItemList([3,3,3])
+		}
+		e = { 'small': 1, 'medium': 1, 'large': 1 }
+		self.assertEqual(len(simulate(p, e, 1)), 1)
+		self.assertEqual(simulate(p, e, 1), [6])
 
 
 if __name__ == "__main__":
