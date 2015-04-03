@@ -28,6 +28,16 @@ def simulate(project_analysis, estimates, runs):
 		Returns a list of effort durations'''
 	# smalls =
 
+def estimate(project_analysis, estimates):
+	''' Takes a project analysis that is a map of WorkItemLists
+		and a map of estimate categories and number of items
+		Returns an effort based upon a random sampling of the analysis times the estimated number of work items'''
+	total_effort = 0
+	smalls = project_analysis['small']
+	num_smalls = estimates['small']
+	total_effort += sum(smalls.sample(num_smalls))
+	return total_effort
+
 
 class WorkItemList():
 	def __init__(self, xs):
