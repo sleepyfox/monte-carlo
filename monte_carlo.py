@@ -13,9 +13,9 @@ def analyse(project_stats):
 		'large':   WorkItemList([])
 	}
 	for story_points, effort in project_stats:
-		if story_points <= 8:
+		if story_points <= 5:
 			analysis_map['small'].append(effort)
-		elif story_points <= 20:
+		elif story_points <= 13:
 			analysis_map['medium'].append(effort)
 		else:
 			analysis_map['large'].append(effort)
