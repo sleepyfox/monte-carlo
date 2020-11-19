@@ -12,12 +12,12 @@ ESTIMATES = {
 
 if sys.argv[1] == 'small':
     # Small project with only one category
-    project = ProjectFileReader('task-times.csv')
+    project = ProjectFileReader('../task-times.csv')
     analysis = analyse(project.lines)
     effort_list = simulate(analysis, SMALL_ESTIMATES, 100)
 elif sys.argv[1] == 'large':
     # Large project with Story Point mappings
-    project = ProjectFileReader('project-stats.csv')
+    project = ProjectFileReader('../project-stats.csv')
     analysis = analyse(project.lines)
     effort_list = simulate(analysis, ESTIMATES, 10000)
 else:
