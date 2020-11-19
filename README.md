@@ -4,7 +4,7 @@ This code kata was used in the 36th meeting of the [London Code Dojo](https://ww
 
 # Kata definition
 
-Our business has a historical data set containing the time taken to complete tasks in seconds, the file is in CSV format and the first field is a placeholder - always '1'. The file can be downloaded [here](./task_times.csv).
+Our business has a historical data set containing the time taken to complete tasks in seconds, the file is in CSV format and the first field is a placeholder - always '1'. The file can be downloaded [here](./task-times.csv).
 
 Our new mini-project consists of 5 tasks. In order to get an estimate of how long it will take to deliver, we can draw a random sample of 5 entries from our dataset.
 
