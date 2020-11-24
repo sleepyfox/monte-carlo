@@ -12,4 +12,4 @@ If we take enough samples, then the distribution of results will tell us somethi
 
 Do this sampling 100 times and use the data to draw a graph of the distribution (you can use a spreadsheet or other canned mechanism for this).  The mid-point of the histogram will give us a 50% confidence interval, and if we order the results by size then the 80th result will give us an 80% confidence interval estimate.
 
-When you've finished this, you can move onto the second part of the excerise [here](./README_2nd.md)
+When you've finished this, you can move onto the second part of the exercise [here](./README_2nd.md)
