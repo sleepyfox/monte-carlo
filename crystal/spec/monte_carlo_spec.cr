@@ -12,6 +12,10 @@ def task_time(data : Array)
   (1..5).map { sample(data) }.sum
 end
 
+def simulation(data)
+  (1..100).map { task_time(data) }
+end
+
 describe "Monte Carlo" do
   describe "A file reader" do
     it "reads the first line of the file" do
@@ -26,16 +30,20 @@ describe "Monte Carlo" do
   end
 
   describe "A sampler" do
-    data = [1, 1, 1]
-
     it "can pick an item at random from a list" do
-      sample(data).should eq 1
+      sample([1, 1, 1]).should eq 1
     end
   end
 
   describe "A new task" do
     it "should last five seconds" do
-      task_time([1, 1, 1, 1]).should eq 5
+      task_time([1, 1, 1]).should eq 5
+    end
+  end
+
+  describe "A simulation" do
+    it "should have 100 task samples" do
+      simulation([1, 1, 1]).size.should eq 100
     end
   end
 end
