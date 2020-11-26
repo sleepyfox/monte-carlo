@@ -1,5 +1,8 @@
 require "spec"
-require "file"
+
+def extract_task_times(file_contents : Array(String))
+  file_contents.map { |x| x.split(',').last.to_i }
+end
 
 describe "Monte Carlo" do
   describe "File reader" do
@@ -9,7 +12,7 @@ describe "Monte Carlo" do
     end
     it "can extract the time in seconds" do
       content = File.read_lines("./task-times.csv")
-      content[0].split(",")[1].to_i.should eq 3600
+      extract_task_times(content)[0].should eq 3600
     end
   end
 end
