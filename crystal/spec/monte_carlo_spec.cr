@@ -31,4 +31,23 @@ describe "Monte Carlo" do
       MonteCarlo.simulation([1, 1, 1]).size.should eq 100
     end
   end
+
+  describe "A confidence interval" do
+    it "should be able to determine the median" do
+      sim = [1,2,3]
+      MonteCarlo.confidence_interval(sim, 0.50).should eq 2
+    end
+    it "should be able to deal with unsorted data" do
+      sim = [2,3,1]
+      MonteCarlo.confidence_interval(sim, 0.50).should eq 2
+    end
+    it "should be able to handle larger data sets" do
+      sim = [0,1,2,3,4,5,6,7,8,9]
+      MonteCarlo.confidence_interval(sim, 0.50).should eq 4
+    end
+    it "should be able to find 90% confindence interval" do
+      sim = [0,1,2,3,4,5,6,7,8,9]
+      MonteCarlo.confidence_interval(sim, 0.90).should eq 8
+    end
+  end
 end
