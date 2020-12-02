@@ -10,6 +10,8 @@ Our new mini-project consists of 5 tasks. In order to get an estimate of how lon
 
 If we take enough samples, then the distribution of results will tell us something about how long our project is likely to take.
 
-Do this sampling 100 times and use the data to draw a graph of the distribution (you can use a spreadsheet or other canned mechanism for this).  The mid-point of the histogram will give us a 50% confidence interval, and if we order the results by size then the 80th result will give us an 80% confidence interval estimate.
+Do this sampling 100 times. If you were to use the data to draw a histogram of the distribution e.g. using a s spreadsheet, the mid-point of the histogram will give us a 50% confidence interval, and if we order the results by size then the 80th result will give us an 80% confidence interval estimate.
+
+Produce 50th and 80th percentile confidence intervals for how long you think the task will take.
 
 When you've finished this, you can move onto the second part of the exercise [here](./README_2nd.md)
