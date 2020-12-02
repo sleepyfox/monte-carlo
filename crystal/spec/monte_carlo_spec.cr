@@ -1,6 +1,12 @@
 require "spec"
 require "../src/monte_carlo"
 
+class FakeRand
+  def rand(n)
+    (0.5 * n).to_i
+  end
+end
+
 describe "Monte Carlo" do
   describe "A file reader" do
     it "reads the first line of the file" do
@@ -33,18 +39,16 @@ describe "Monte Carlo" do
   end
 
   describe "A confidence interval" do
+    fake_rand = FakeRand.new
+
     it "should be able to determine the median" do
       sim = MonteCarlo::Simulation.new([1,1,1])
       sim.confidence_interval(0.50).should eq 5
     end
-    # it "should be able to deal with unsorted data" do
-    #   sim = MonteCarlo::Simulation.new([2,3,1])
-    #   sim.confidence_interval(0.50).should eq 10
-    # end
-    # it "should be able to handle larger data sets" do
-    #   sim = [0,1,2,3,4,5,6,7,8,9]
-    #   MonteCarlo.confidence_interval(sim, 0.50).should eq 4
-    # end
+    it "should be able to handle larger data sets" do
+      sim = MonteCarlo::Simulation.new([0,1,2,3,4,5,6,7,8,9], fake_rand)
+      sim.confidence_interval(0.50).should eq 25
+    end
     it "should be able to find 90% confindence interval" do
       sim = MonteCarlo::Simulation.new([1,1,1])
       sim.confidence_interval(0.90).should eq 5
