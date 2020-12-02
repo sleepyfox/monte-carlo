@@ -4,23 +4,21 @@ module MonteCarlo
     file_contents.map { |x| x.split(',').last.to_i }
   end
 
-  # TODO: allow random to be injected
-  def self.sample(data : Array)
-    data[Random.rand(data.size)]
+  def self.sample(task_times_in_seconds : Array, randomiser)
+    task_times_in_seconds[randomiser.rand(task_times_in_seconds.size)]
   end
 
-  def self.task_time(data : Array)
-    (1..5).map { sample(data) }.sum
+  def self.overall_time(task_times_in_seconds : Array, randomiser)
+    (1..5).map { sample(task_times_in_seconds, randomiser) }.sum
   end
 
   class Simulation
-    include MonteCarlo
     @sim_data : Array(Int32)
-    def initialize(data : Array)
-      @sim_data = (1..100).map { MonteCarlo.task_time(data) }
+    def initialize(data : Array, randomiser = Random.new)
+      @sim_data = (1..100).map { MonteCarlo.overall_time(data, randomiser) }.sort
     end
     def confidence_interval(percent)
-      @sim_data[50]
+      @sim_data[(size * percent).to_i]
     end
     def size
       @sim_data.size

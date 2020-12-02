@@ -7,16 +7,16 @@ end
 
 content = File.read_lines("./task-times.csv")
 timings = MonteCarlo.extract_task_times(content)
-sim = MonteCarlo.simulation(timings)
+sim = MonteCarlo::Simulation.new(timings)
 
 # Output all sim values for spreadsheet
 # sim.each { |x| puts x }
 
 # print 50th and 90th percentile confidence intervals
-ci50 = MonteCarlo.confidence_interval(sim, 0.5)
-ci80 = MonteCarlo.confidence_interval(sim, 0.8)
-ci90 = MonteCarlo.confidence_interval(sim, 0.9)
-ci98 = MonteCarlo.confidence_interval(sim, 0.98)
+ci50 = sim.confidence_interval(0.5)
+ci80 = sim.confidence_interval(0.8)
+ci90 = sim.confidence_interval(0.9)
+ci98 = sim.confidence_interval(0.98)
 puts "50% confidence #{ci50}s = #{in_days(ci50)}d"
 puts "80% confidence #{ci80}s = #{in_days(ci80)}d"
 puts "90% confidence #{ci80}s = #{in_days(ci90)}d"

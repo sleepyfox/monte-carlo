@@ -16,13 +16,13 @@ describe "Monte Carlo" do
 
   describe "A sampler" do
     it "can pick an item at random from a list" do
-      MonteCarlo.sample([1, 1, 1]).should eq 1
+      MonteCarlo.sample([1, 1, 1], Random.new).should eq 1
     end
   end
 
   describe "A new task" do
     it "should last five seconds" do
-      MonteCarlo.task_time([1, 1, 1]).should eq 5
+      MonteCarlo.overall_time([1, 1, 1], Random.new).should eq 5
     end
   end
 
